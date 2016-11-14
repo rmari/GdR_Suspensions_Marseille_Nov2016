@@ -1,0 +1,715 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Friction and shear-thickening in dense suspension rheology</title>
+
+		<meta name="description" content="Fragility">
+		<meta name="author" content="Romain Mari">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<!-- <link rel="stylesheet" href="css/theme/serif.css" id="theme"> -->
+		<link rel="stylesheet" href="css/theme/solarized.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+		<!-- <script type="text/javascript" src="/usr/share/javascript/mathjax/MathJax.js"></script> -->
+		<style>
+		div.ref {
+				position: absolute;
+				top: 80px;
+				right: 0px;
+				font-size: 50%;
+				text-align: right;
+		}
+		div.relref {
+				position: relative;
+				top: 0px;
+				right: 0px;
+				font-size: 50%;
+				/*text-align: right;*/
+		}
+		div.affil {
+				position: relative;
+				top: 30px;
+				font-size: 70%;
+		}
+		div.ctr {
+			position: absolute;
+			left: 50%;
+			width: 960px;
+			margin-left: -480px;
+		}
+		p.ctr {
+			position: absolute;
+			left: 50%;
+			width: 960px;
+			margin-left: -480px;
+		}
+		p.vertical {
+			transform: rotate(270deg);
+			/*transform-origin: left top 0;*/
+		}
+		/*http://stackoverflow.com/questions/30861845/how-to-use-two-column-layout-with-reveal-js*/
+		#left {
+			left:-8.33%;
+		  text-align: left;
+		  float: left;
+		  width:46%;
+		  z-index:-10;
+		}
+		div.cleft {
+		  text-align: left;
+		  float: left;
+		  width:46%;
+		  z-index:-10;
+		}
+		#right {
+		  left:31.25%;
+		  top: 75px;
+		  float: right;
+		  text-align: left;
+		  z-index:-10;
+		  width:46%;
+		}
+		div.cright {
+		  float: right;
+		  text-align: left;
+		  z-index:-10;
+		  width:46%;
+		}
+		h3.title {
+				font-size: 48px;
+				/*position: absolute;*/
+				top: 0%;
+			  /*left: 50%;*/
+				width: 1000px;
+			  height: 40px;
+			  /*margin-left: -500px; /* Half the width */*/
+		}
+		img.abs {
+			position: absolute;
+			height: auto;
+			width: auto;
+			border: 0px;
+		}
+		</style>
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h3 class="title">Friction and shear-thickening in dense suspension rheology</h3>
+					<div style="font-size: 80%">
+					<div class="ctr" style="position: relative; top: 60px;">
+						Romain Mari
+						<div class="affil">
+							Department of Applied Mathematics and Theoretical Physics, University of Cambridge
+						</div>
+					</div>
+				</div>
+				</section>
+				<section>
+					<div style="position: relative; top: 50px;">
+						<img src="img/Castle_friction_title.png"
+								style="position:relative; max-width: 600px; border: 0px; z-index: -1; left:0px;">
+						<p style="font-size: 70%;">Polystyrene beads ($\approx 1\mu m$) + PVP grafted on the surface (steric stabilizer)</p>
+						<div style="font-size: 70%;">
+							<img src="img/Castle_friction_comparison.png"
+									style="position:relative; max-width: 450px; border: 0px; z-index: -1; left:0px;">
+							<p style="position: relative; top: -150px; left: 45px;">Rough</p>
+							<p style="position: relative; top: -280px; left: -35px;">Rougher</p>
+							<p style="position: relative; top: -370px; left: -60px;">Roughest</p>
+							<p class="vertical" style="width: 150px; position: relative; top: -350px; left: 180px; background-color: #ffffff">Shear stress</p>
+							<p style="width: 150px; position: relative; top: -270px; left: 380px; background-color: #ffffff">Shear rate</p>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3 class="title">Suspensions of hard particles</h3>
+					<p style="position: relative; top: 80px;">
+						Hard particles, athermal, density-matched, in Newtonian fluid
+					</p>
+					<div style="position: relative; top:120px; text-align: left;">
+						<ul style="position: relative;">
+							<li>Rate-independant rheology, by <i>dimensional analysis</i> <br><span style="font-size:70%">[Boyer, Guazzelli & Pouliquen, PRL 2011]</span></li>
+							<li>Steady-state $\eta(\phi)$</li>
+							<li>$\eta(\phi)$ diverging at jamming
+							<li>Known to depend on shape and friction</li>
+						</ul>
+					</div>
+				</section>
+
+				<section>
+					<h3 class="title">Evidence for friction in suspensions</h3>
+					<div id="left" style="position: relative; left: 0px; top: 10px;">
+						<div class="relref" style="position: relative; top: 10px;">
+							[Boyer, Guazzelli & Pouliquen, PRL 2011]
+						</div>
+						<img src="img/Boyer_viscosity_vs_phi.png"
+								style="position:relative; max-width: 350px; border: 0px; z-index: -1; left:50px;">
+						<p style="font-size: 80%">
+							$\eta(\phi)$ diverges before frictionless jamming point $\phi_{\mathrm{RCP}}\approx 0.64$
+						</p>
+					</div>
+					<div class="fragment">
+						<div id="right" style="position: relative; left: 0px; top: 10px;">
+							<div class="relref" style="position: relative; top: 10px;">
+								[Guy, Hermes & Poon, PRL 2015]
+							</div>
+							<img src="img/guy_et_al_viscosity_branches.png"
+									style="position:relative; max-width: 300px; border: 0px; z-index: -1; left:0px;">
+							<p style="position: relative; left:70px; top: -195px; font-size: 60%; color: #a74646">$d=4\mu m$</p>
+							<p style="position: relative; left:220px; top: -235px; font-size: 60%; color: #4b3eb1">$d=0.4\mu m$</p>
+							<div style="position:relative; top: -140px;">
+								<div class="relref" style="position: relative; top: 10px;">
+									[Gallier et al, JFM 2014]
+								</div>
+							<img src="img/Gallier_friction_viscosity.png"
+									style="position:relative; max-width: 300px; border: 0px; z-index: -1; left:0px;">
+						</div>
+				</section>
+
+				<section>
+					<h3 class="title">When is it frictional?</h3>
+					<p style="position: relative; left: 20px;">When particles touch!</p>
+					<div class="fragment">
+						<ul style="font-size: 90%">
+							<li>
+								No short range repulsion (besides hard core)
+								<br>
+								<span style="color: #9e415a"> large particles</span>
+								<div style="position: relative; left: 0px; top: -10px;">
+									<img src="img/guy_et_al_viscosity_branches.png"
+											style="position: relative; max-width: 250px; border: 0px; z-index: -1; left:0px;">
+									<p style="position: relative; left:65px; top: -170px; font-size: 50%; color: #a74646">$d=4\mu m$</p>
+									<p style="position: relative; left:190px; top: -200px; font-size: 50%; color: #4b3eb1">$d=0.4\mu m$</p>
+								</div>
+								<div style="position: relative; left: 350px; top: -400px;">
+									<div class="relref">[Blanc, Peters & Lemaire, PRL 2011]</div>
+									<img src="img/Blanc_et_al_pair_correl.png"
+											style="position: relative; max-width: 350px; border: 0px; z-index: -1; left:0px;">
+									<p style="position: relative; left:190px; top: -200px; font-size: 50%; color: #4b3eb1">$d=170\mu m$</p>
+								</div>
+							</li>
+							<li style="position: relative; top: -430px">Short range repulsion too weak
+								<br>
+								<span style="color: #9e415a">large stresses</span>
+							</li>
+							<li style="position: relative; top: -430px">Contacts at <i>any</i> volume fraction</li>
+							<li style="position: relative; top: -430px">Matters more at large volume fraction</li>
+						</ul>
+					</div>
+				</section>
+
+				<section>
+					<h3 class="title">Some consequences</h3>
+					<div style="height: 530px; position: relative; top: 30px;">
+						<div class="cleft">
+							<div class="relref">
+								[Isa et al, PRL 2009]
+							</div>
+							<p style="position: relative; left: 180px; top: -20px; font-size: 80%;">$\Delta P$</p>
+							<img src="img/capillary_flow.png"
+									style="position:relative; max-width: 320px; border: 0px; z-index: -1; top: -60px; left:30px; box-shadow: none;">
+						</div>
+						<div class="fragment">
+							<div class="cright" style="font-size: 80%; position: relative; left: -100px;">
+								<p style="position: relative; top: -20px;">Propagating jammed pulses</p>
+								<img src="img/capillary_jam.png"
+										style="position:relative; top: -42px; max-width: 320px; border: 0px; box-shadow: none;">
+								<br>
+								<img src="img/Isa_et_al_spacetime.png"
+									style="position:relative; top: -240px; left: 360px; max-width: 140px; border: 0px; z-index: -1; box-shadow: none;">
+							</div>
+						</div>
+					</div>
+					<div class="fragment">
+						<div class="cleft" style="height: 300px; position: relative; top: -280px">
+							<div class="relref">
+								[Dumazer et al, PRL 2016]
+							</div>
+							<img src="img/Dumazer_PRL_2016.png"
+								style="position:relative; top: 0px; left: 0px; max-width: 440px; border: 0px; z-index: -1; box-shadow: none;">
+						</div>
+					</div>
+					<div class="fragment">
+						<div class="cright" style="position: relative; top: -240px; font-size: 80%;">
+							<p>Janssen effect, silo honking?</p>
+							<div class="relref" style="left:150px; font-size: 60%; position: relative; top: -20px;">
+								[Bonneau, Catelin-Jullien & Andreotti, PRE 2010]
+							</div>
+							<img src="img/Bonneau_honking.png"
+									style="position:relative; max-width: 290px; border: 0px; z-index: -1; left:150px; top: -20px; box-shadow: none;">
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<h3 class="title">Shear thickening</h3>
+					<div class="ref" style="font-size:50%;">
+						[Youtube, Mach by Hong Leong Bank]
+					</div>
+					<div class="ctr" style="position: absolute; top: 150px">
+						<video width=700 style="position: relative; left: 0%" controls loop>
+						 <source src="vid/cornstarch_pool.mp4" type="video/mp4" />
+						</video>
+					</div>
+				</section>
+				<section>
+					<h3 class="title">Shear thickening</h3>
+					<div class="container" style="height: 400px;">
+						<div class="cleft" style="position: relative; font-size:70%; left: 5%; top: 10px;">
+							<div class="relref" style="font-size: 70%">[Cwalina & Wagner, JOR 2014]</div>
+							<p style="position: relative; top: -20px;">260nm silica + polymer brush <br> in PEG 200</p>
+						<img src="img/Cwalina_JOR.png"
+								style="position: relative; top: -40px; max-width: 290px; border: 0px;">
+						</div>
+							<div class="cright" style="position: relative; font-size:70%; left: 40px; top: 10px;">
+								<div class="relref" style="font-size: 70%">[Egres & Wagner, JOR 2005]</div>
+							~500nm calcium carbonate <br>+ polymer brush in PEG 200
+							<img src="img/Egres_thickening_calcium_carbonate.png"
+								style="position: relative; top: 0px; max-width: 260px; border: 0px;">
+						</div>
+					</div>
+					<div class="fragment">
+						<div class="cleft" style="position:relative; left:50px; top:-40px;">
+							<div class="relref" style="position: relative; top: 10px;">[Gallier et al, JFM 2014]</div>
+							<img src="img/Gallier_friction_viscosity.png"
+									style="position:relative; max-width: 300px; border: 0px; z-index: -1; left:0px;">
+						</div>
+						<div class="cright" style="position: relative; top: 20px; left: -100px;">
+							Stress-induced friction
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<h3 class="title">Minimal shear thickening fluid</h3>
+					<p style="text-align: left; position: relative; top: 20px; font-size: 80%">Simulations with:</p>
+					<ul style="position:relative; top: 10px; font-size:80%">
+						<li>hard spheres</li>
+						<li>Stokes regime</li>
+						<li>frictional contacts, with Coulomb $|F^{\mathrm{t}}_{\mathrm{C}}|<\mu |F^{\mathrm{n}}_{\mathrm{C}}|$</li>
+						<li>short-range repulsive force</li>
+						<li>[hydrodynamics]</li>
+					</ul>
+					<div class="fragment" style="position:relative; top: 35px;">
+						<div class="relref" style="left:280px;">
+							[Seto et al, PRL 2013]<br>
+							[Mari et al, JOR 2014]<br>
+						</div>
+						<img src="img/visc_vs_rate_NB.svg" style="position: relative; max-width: 350px; top: -50px; left: 0px; border: 0px;">
+					</div>
+				</section>
+
+				<section>
+					<h3 class="title">How does it compare to experiments?</h3>
+					<div class="ref">
+						[Mari et al, PNAS 2015]
+					</div>
+					<div style="position: relative; top: 60px">
+					<p style="position: relative; top: 0px; font-size: 80%">
+						With Brownian motion and repulsive force $F_{\mathrm{R}} = F^{\ast}e^{-h/\lambda_{\mathrm{D}}}$
+					</p>
+					<p style="position: relative; top: 0px; font-size: 70%">
+						Experiment:<br>
+						Cwalina and Wagner (JOR, 2014)<br>
+						260nm silica + polymer brush in PEG 200
+					</p>
+					<div class="cleft" style="text-align: left; font-size:70%;">
+						<img src="img/comparison_Cwalina_visc_rate.png" style="position: relative; margin: 40px; top: -40px; left: 20px; border:0px; width:350px">
+					</div>
+					<div class="cright" style="text-align: left; font-size:70%;">
+						<img src="img/comparison_Cwalina_visc_stress.png" style="position: relative; margin: 40px; top: -40px; left: -20px; border:0px; width:350px">
+					</div>
+					<p style="position: relative;  top: -60px;">
+						$\mu=1 \qquad F^{\ast} = 79pN \qquad \lambda_{\mathrm{D}} = 5.2nm$
+					</p>
+					</div>
+				</section>
+
+				<section>
+					<h3 class="title">Secondary thinning</h3>
+					<div class="container" style="height: 290px;">
+						<div class="cleft">
+							<img src="img/Fall_thickening_thinning_JOR_2012.png" style="position: relative; top: 0px; left: 200px; border:0px; width:300px">
+						</div>
+						<div class="cright">
+							<div class="relref" style="text-align: left; position: relative; top: 20px;">
+								[Fall et al, JOR 2012]
+							</div>
+						</div>
+					</div>
+					<div class="fragment">
+						Friction decreasing again?
+					</div>
+					<div class="fragment">
+						<div class="cleft">
+							<img src="img/visc_vs_rate_ftmax.png" style="position: relative; top: 0px; border:0px; left: 200px;width:400px">
+						</div>
+						<div class="cright">
+							<p style="position: relative; top: 30px; left: 150px; font-size: 90%">
+								$|F^{\mathrm{t}}_{\mathrm{C}}|<|F^{\mathrm{max}}|$
+							</p>
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<h3 class="title">What is friction microscopically?</h3>
+					<p style="font-size: 80%">Ability to stand <i>static</i> non-central force and/or torque.</p>
+					<div class="container; fragment"
+						style="position: absolute; left: 2%; top: 140px; text-align: left; width: 200px; font-size: 70%;">
+						<span style="font-size: 80%;">Roughness</span>
+						<img src="img/friction_roughness.png"
+									style="position:relative; max-width: 200px; border: 0px; z-index: -1; box-shadow: none;">
+						Standard granular contacts?
+						<ul>
+							<li>Coulomb?</li>
+							<li>Sliding friction</li>
+							<li>Rolling friction</li>
+							<li>Torsion friction</li>
+						</ul>
+					</div>
+					<div class="container; fragment"
+						style="position: absolute; left: 27%; top:140px; text-align: left; width: 250px; font-size: 70%;">
+						<span style="font-size: 80%;">Polymer brush deformation</span>
+						<img src="img/friction_hair_flat.png"
+								style="position:relative; max-width: 200px; border: 0px; z-index: -1; top: 0px; box-shadow: none;">
+						<ul>
+							<li>Very low sliding friction <span style="font-size: 80%">[Klein, 1996]</span></li>
+							<li>Rolling friction?</li>
+						</ul>
+					</div>
+					<div class="container; fragment"
+						style="position: absolute; left: 57%; top:140px; text-align: center; width: 440px; font-size: 70%;">
+						<span style="position:relative; font-size: 80%;">Polymer brush entanglement</span>
+						<img src="img/friction_hair_entangle.png"
+								style="position:relative; max-width: 200px; border: 0px; z-index: -1; top: 0px; box-shadow: none;">
+						<p style="position: relative; top: -20px;">Static?</p>
+						<div class="cleft" style="position:relative; top: -30px; left:2%;">
+							<div class="relref" style="font-size:80%">[Raviv et al, 2002]</div>
+							<img src="img/Klein_friction_polymer.png"
+								style="position:relative; max-width: 210px; border: 0px; z-index: -1; top: -10px; box-shadow: none;">
+						</div>
+						<div class="cright" style="position:relative; top: -30px; left: 10px;">
+							<div class="relref" style="font-size:80%">[Fernandez et al, 2013]</div>
+							<img src="img/Fernandez_friction_polymer.png"
+								style="position:relative; max-width: 220px; border: 0px; z-index: -1; top: -10px; box-shadow: none;">
+						</div>
+						<p style="position: relative; top: -40px; left: 100px;">Long relaxation time</p>
+					</div>
+					<div class="fragment">
+						<p style="position: absolute; font-size: 200%; top: 300px; left: 440px; background-color: #51c7c0"> ???? </p>
+				</section>
+
+				<section>
+					<h3 class="title">How to avoid friction?</h3>
+					<p style="font-size: 90%; position: relative; top: 50px;">Adding repulsion<br>
+					Plasticizers: polymers on particles' surfaces (concrete, plaster, food)</p>
+
+					<div class="fragment">
+						<div class="cleft" style="position: relative; top: 40px;">
+							<p style="font-size: 90%">Lecithin in chocolate</p>
+							<img src="img/Ferrero-Rocher-Ingredients.jpg" style="position: relative; top: -20px; max-height: 300px; border: 0px; left: 0px;">
+						</div>
+						<div class="cright" style="position: relative; top: 80px;">
+							<div class="relref">
+								[Nebesny & Dorota Zyzelewicz, 2005]
+							</div>
+							<img src="img/viscosity_vs_lecithin_chocolate.png" style="position: relative; top: 0px; max-height: 300px; border: 0px; left: 0px;">
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<h3 class="title">How to avoid friction?</h3>
+					<p style="font-size: 90%">Primary flows with oscillatory cross shear</p>
+					<div class="cleft" style="position:relative; top: 0px; font-size: 70%">
+						"Unthickening" of a shear-thickening suspension (oobleck/cornstarch)
+						<div class="relref" style="position: relative; font-size: 80%; top: 0px;">
+							[Lin et al, PNAS, 2016]
+						</div>
+						<div class="cleft">
+							<img src="img/Lin_et_al_setup.png" style="position: relative; top: 10px; max-height: 300px; border: 0px; left: -20px;">
+						</div>
+						<div class="cright">
+							<img src="img/Lin_et_al_viscosity.png" style="position: relative; top: 10px; max-width: 250px; border: 0px; left: -30px;">
+						</div>
+					</div>
+					<div class="fragment">
+						<div class="cright" style="position:relative; top: 0px; font-size: 70%">
+							Speeding sedimentation of a large intruder
+							<div class="relref" style="position: relative; font-size: 80%; top: 0px;">
+								[Blanc, Lemaire & Peters, JFM, 2014]
+							</div>
+							<div class="cleft">
+								<img class="abs" src="img/Blanc_et_al_setup.png" style="position: relative; top: 10px; max-height: 300px; border: 0px; left: 0%;">
+							</div>
+							<div class="cright">
+								<img src="img/Blanc_et_al_velocity.png" style="position: relative; top: 10px; max-width: 270px; border: 0px; left: -20px;">
+							</div>
+						</div>
+					</div>
+					<div class="fragment" style="position: absolute; top: 570px; left: 200px;">
+						Generic? Dependent on thickening?
+					</div>
+				</section>
+
+				<section>
+					<h3 class="title">Simple shear + oscillatory cross shear</h3>
+					<div class="cleft" style="position: relative; top: 50px;">
+						<img src="img/shear_path_OSP.png"
+									style="position:relative; top: 20px; max-height: 180px; border: 0px; left: 100px; box-shadow: none;">
+						<div style="position: relative; top: -80px; left: 440px;">$\gamma_x$</div>
+						<div style="position: relative; top: -260px; left: 140px;">$\gamma_z$</div>
+						<p style="position: relative; top: -70px; left: 20%; font-size: 80%">
+							2 dimensionless numbers:
+							<ul style="position: relative; left: 100px; top: -70px; font-size: 80%;">
+								<li>amplitude $\gamma^{\max}_z = \dot \omega^{-1} \gamma_{\perp}$,</li>
+								<li>rate ratio $\dot \gamma_{\perp}/\dot \gamma_0$.</li>
+							</ul>
+						</p>
+					</div>
+					<div class="cright" style="position: relative; top: 50px;">
+						<p style="position: relative; top: 0px; left: 0px; font-size: 70%; text-align: left;">
+							$\dot\gamma_x = \dot \gamma_0$
+							<br>
+							$\dot\gamma_z = \dot \gamma_{\perp} \cos(\omega t)$
+							<br><br>
+							$\gamma_x = \dot \gamma_0 t$
+							<br>
+							$\gamma_z = \dot \omega^{-1} \gamma_{\perp} \sin(\omega t)$
+						</p>
+					</div>
+				</section>
+
+				<section>
+					<h3 class="title">Simple shear + oscillatory cross shear</h3>
+					<p style=" position: relative; top: 50px; font-size: 80%">
+						When $\gamma^{\max}_z \approx 1\%$ and $\dot \gamma_{\perp}/\dot \gamma_0\gg 1$,
+						<br>
+						viscosity drop actually very generic.
+					</p>
+					<div class="cleft" style="font-size: 80%; text-align: right;">
+						<p style="position: relative; top: 100px;">Thickening suspension,<br> $\phi=0.56$, $\mu=1$</p>
+					</div>
+					<div class="cright">
+						<img src="img/viscosity_OSP_thickening.png" style="position: relative; top: 50px; max-height: 220px; border: 0px;">
+					</div>
+				</section>
+
+				<section>
+					<h3 class="title">Simple shear + oscillatory cross shear</h3>
+					<p class="ctr" style="top: 100px;">
+						Viscosity drop due to contact number drop.
+					</p>
+					<img class="abs" src="img/contact_nb_OSP_phi0.54.png" style="top: 200px; max-height: 250px; border: 0px; left: 5%;">
+					<div class="fragment">
+						<img class="abs" src="img/contact_nb_OSP_phi0.54_zoom.png" style="top: 200px; max-height: 250px; border: 0px; right: 5%;">
+					</div>
+				</section>
+
+				<section>
+					<h3 class="title">"Echo" experiment</h3>
+					<div style="position: absolute; top: 200px; left: 10px;">
+						<div class="relref">
+							[Pine, Gollub, Brady, Leshansky, Nature 2005]
+						</div>
+						<video width=320	0 style="position: relative; left: 0%" controls autoplay loop>
+						 <source src="vid/nature04380-s1.webm" type="video/webm" />
+						</video>
+					</div>
+					<div class="fragment">
+						<p style="position: absolute; top: 80px; left: 510px; font-size: 90%">
+							Self-organization
+						</p>
+						<div style="position: absolute; top: 135px; left: 410px;">
+								<p style="position: relative; left: 10px; font-size: 80%; text-align: left">
+								$\phi < \phi_{\mathrm{c}}$
+							</p>
+								<video width=260 style="position: relative; left: 0px; top: -20px;" controls autoplay loop>
+							 <source src="vid/nature04380-s2.webm" type="video/webm" />
+							</video>
+						</div>
+					</div>
+					<div class="fragment">
+						<div style="position: absolute; top: 135px; left: 700px;">
+								<p style="position: relative; left: 10px; font-size: 80%; text-align: left">
+								$\phi > \phi_{\mathrm{c}}$
+							</p>
+								<video width=280 style="position: relative; left: 0px; top: -20px;" controls autoplay loop>
+							 <source src="vid/nature04380-s3.webm" type="video/webm" />
+							</video>
+						</div>
+							<img class="abs" src="img/Corte_Pine_contacts.png" style="top: 410px; max-height: 230px; border: 0px; left: 510px;">
+					</div>
+				</section>
+
+				<section>
+					<h3 class="title">Simple shear + oscillatory cross shear</h3>
+					<div class="container" style="height: 180px;">
+						<div class="cleft">
+							<p style="position: relative; top: 20px; text-align: right; font-size: 80%">
+								Viscosity drop for $\dot \gamma_{\perp}/\dot \gamma_0\gg 1$.
+							</p>
+						</div>
+						<div class="cright">
+							<img src="img/actual_shear_path_OSP.png" style="top: 70px; max-height: 160px; border: 0px; left: 450px;">
+						</div>
+					</div>
+					<div class="fragment">
+						<div class="container">
+							<p style="font-size: 90%">Viscosity drop when "echo" experiment + simple shear drift</p>
+							<div class="cleft">
+								<div class="ref" style="position: relative; top: 10px; right: 40px;">
+									[Corté et al, Nat. Phys., 2008]
+								</div>
+								<img src="img/Corte_Pine_contacts.png"
+											style="position: relative; top: 0px; max-height: 250px; border: 0px; left: 15%;">
+							</div>
+							<div class="cright">
+								<div class="ref" style="position: relative; top: 10px; right: 40px;">
+									Our simulation: simple shear + oscillations
+								</div>
+								<img src="img/contact_nb_OSP_phi0.54_strobo.png"
+											style="position: relative; top: 0px; max-height: 220px; border: 0px">
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<h3 class="title">Where to go from here?</h3>
+					<ul>
+						<li>Measurements of tangential forces at the particle scale ($1\mu m$)</li>
+						<li>Associated contact models</li>
+						<li>Friction with walls: confinement</li>
+						<li>Rheology with rate-dependent friction? (Klein et al data)</li>
+						<li>Extreme dependence on friction: flow instabilities</li>
+						<li>Rheology by design?</li>
+				</section>
+
+				<section>
+					<h3 class="title">Viscosity drop & volume fraction</h3>
+					<img class="abs"
+					src="img/viscosity_vs_phi_comparison_steady_OSP.png"
+					style="top: 180px; max-height: 250px; border: 0px; left: 30%;">
+				</section>
+
+				<section>
+					<h3 class="title">Flow instabilities</h3>
+					<div class="container">
+						<div class="cleft" style="position: relative; top: 30px; font-size:80%; text-align:right;">
+							Stress-controlled<br> uniform flow curves
+							<div class="relref">
+								[Wyart & Cates, PRL 2014]<br>
+								[Mari et al, PRE 2015]
+							</div>
+							<div class="fragment">
+								<div style="position: relative; top: 200px;">
+									<p>Uniform flow unstable</p>
+								</div>
+							</div>
+						</div>
+						<div class="cright">
+							<img src="img/viscosity_vs_rate_PRE.png" style="border:0px; max-width:320px;">
+							<div class="fragment">
+								<div class="relref">
+									[Hermes et al, 2015]
+								</div>
+								<img src="img/ST_instability_Hermes.png" style="max-height: 350px; border:0px;">
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<h3 class="title">Vorticity banding</h3>
+					<div class="ctr" style="position: relative; top: 30px;">
+						<video width=1000 style="position: relative; left: 0%" controls autoplay loop>
+						 <source src="vid/vorticity_instability_simu.mp4" type="video/mp4" />
+						</video>
+					</div>
+					<div class="fragment">
+						<div class="cleft" style="position: relative; font-size: 70%; top: 70px;">
+							Modeling by Suspension Balance Model + Wyart-Cates thickening model<br><br>
+							Mass conservation:<br>$\partial_t \phi + \partial_z v_z \phi = 0$<br>
+							Force balance (migration):<br> $\partial_z \sigma_{zz} = -\phi \alpha (v_z-\bar{v}_z)$<br>
+							(Toy) constitutive model:<br> $\sigma_{zz} = \eta(\phi, f) \dot\gamma$<br>
+							$\partial_t f = -\dot\gamma \gamma_0^{-1} \left[f - f^{\ast}(\sigma)\right]$<br>
+							Stress control:<br> $\sigma_0 = \langle \eta(\phi, f) \rangle \dot\gamma$<br>
+						</div>
+						<div class="cright" style="position: relative; font-size: 80%; top: 60px;">
+							<video width=350 style="position: relative; left: 0%" controls autoplay loop>
+							 <source src="vid/vorticity_instability_field_simu.mp4" type="video/mp4" />
+							</video>
+							<video width=350 style="position: relative; left: 0%" controls autoplay loop>
+							 <source src="vid/vorticity_instability_field_model.mp4" type="video/mp4" />
+							</video>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: false,
+
+				transition: 'none', // none/fade/slide/convex/concave/zoom
+
+				// 	offline maths
+				math: {
+						mathjax: 'https://cdn.mathjax.org/mathjax/latest/MathJax.js',
+						config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+				},
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true },
+					// MathJax
+         	{ src: 'plugin/math/math.js', async: true }
+				]
+
+			});
+
+		</script>
+
+	</body>
+</html>
